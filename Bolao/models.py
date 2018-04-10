@@ -18,6 +18,7 @@ class Pais(models.Model):
 
 class Partida(models.Model):
     idPartida = models.AutoField (primary_key = True)
+    tituloPartida = models.CharField(max_length=7)
     idPais1 = models.ForeignKey('Pais', on_delete=models.CASCADE, related_name='pais_1') 
     idPais2 = models.ForeignKey('Pais', on_delete=models.CASCADE, related_name='pais_2')
     placarPais1 = models.PositiveIntegerField(default=0)
@@ -26,6 +27,12 @@ class Partida(models.Model):
     datainicio = models.DateTimeField(default=timezone.now)
     dataFim = models.DateTimeField(default=timezone.now)
 
+    #def tituloPartida(self):
+        #self.tituloPartida = 
+      #  self.save()
+
+    #def __str__(self):
+     #   return self.tituloPartida
     
 class Aposta(models.Model):
     idAposta = models.AutoField (primary_key = True)
