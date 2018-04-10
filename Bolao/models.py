@@ -8,13 +8,18 @@ class Jogador(models.Model):
     login =  models.CharField(max_length=50)
     senha =  models.CharField(max_length=50)
     creditos =  models.DecimalField(decimal_places = 2, max_digits = 4)
+
+    def __str__(self):
+        return self.nomeJogador
     
 class Pais(models.Model):
     idPais = models.AutoField (primary_key = True)
     NomePais = models.CharField(max_length=32)
     siglaPais = models.CharField(max_length=3)
     arquivoDeImagem = models.FileField()
-    
+
+    def __str__(self):
+        return self.NomePais
 
 class Partida(models.Model):
     idPartida = models.AutoField (primary_key = True)
@@ -31,8 +36,8 @@ class Partida(models.Model):
         #self.tituloPartida = 
       #  self.save()
 
-    #def __str__(self):
-     #   return self.tituloPartida
+    def __str__(self):
+        return self.tituloPartida + ' ' + str(self.datainicio)
     
 class Aposta(models.Model):
     idAposta = models.AutoField (primary_key = True)
@@ -41,7 +46,9 @@ class Aposta(models.Model):
     placarPais1 = models.PositiveIntegerField()
     placarPais2 = models.PositiveIntegerField()
     statusAposta = models.IntegerField()
-    
+
+    def __str__(self):
+        return str(self.idJogador) + ' ' + str(self.idPartida)
 
 # Create your models here.
 
