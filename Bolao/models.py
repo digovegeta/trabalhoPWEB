@@ -24,6 +24,7 @@ class Pais(models.Model):
 class Partida(models.Model):
     idPartida = models.AutoField (primary_key = True)
     tituloPartida = models.CharField(max_length=7)
+    idEstadio = models.ForeignKey('Estadio', on_delete=models.CASCADE) 
     idPais1 = models.ForeignKey('Pais', on_delete=models.CASCADE, related_name='pais_1') 
     idPais2 = models.ForeignKey('Pais', on_delete=models.CASCADE, related_name='pais_2')
     placarPais1 = models.PositiveIntegerField(default=0)
@@ -37,7 +38,7 @@ class Partida(models.Model):
       #  self.save()
 
     def __str__(self):
-        return self.tituloPartida + ' ' + str(self.dataInicio)
+        return self.tituloPartida + ' ' +  str(self.idEstadio)+ ' ' + str(self.dataInicio)
     
 class Aposta(models.Model):
     idAposta = models.AutoField (primary_key = True)
@@ -56,6 +57,16 @@ class Login(models.Model):
 
     def __str__(self):
         return self.login + ' ' + self.data
+
+class Estadio(models.Model):
+    idEstadio = models.AutoField (primary_key = True)
+    nomeEstadio = models.CharField(max_length=25)
+    cidadeEstadio = models.CharField(max_length=25)
+    estadoEstadio = models.CharField(max_length=25)
+    siglaEstado = models.CharField(max_length=2)
+
+    def __str__(self):
+        return self.nomeEstadio + ' - ' + self.cidadeEstadio
 
 # Create your models here.
 
