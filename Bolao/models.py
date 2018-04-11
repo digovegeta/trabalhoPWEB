@@ -14,12 +14,12 @@ class Jogador(models.Model):
     
 class Pais(models.Model):
     idPais = models.AutoField (primary_key = True)
-    NomePais = models.CharField(max_length=32)
+    nomePais = models.CharField(max_length=32)
     siglaPais = models.CharField(max_length=3)
     arquivoDeImagem = models.FileField()
 
     def __str__(self):
-        return self.NomePais
+        return self.nomePais
 
 class Partida(models.Model):
     idPartida = models.AutoField (primary_key = True)
@@ -29,7 +29,7 @@ class Partida(models.Model):
     placarPais1 = models.PositiveIntegerField(default=0)
     placarPais2 = models.PositiveIntegerField(default=0)
     resultado = models.IntegerField()
-    datainicio = models.DateTimeField(default=timezone.now)
+    dataInicio = models.DateTimeField(default=timezone.now)
     dataFim = models.DateTimeField(default=timezone.now)
 
     #def tituloPartida(self):
@@ -37,7 +37,7 @@ class Partida(models.Model):
       #  self.save()
 
     def __str__(self):
-        return self.tituloPartida + ' ' + str(self.datainicio)
+        return self.tituloPartida + ' ' + str(self.dataInicio)
     
 class Aposta(models.Model):
     idAposta = models.AutoField (primary_key = True)
@@ -48,7 +48,14 @@ class Aposta(models.Model):
     statusAposta = models.IntegerField()
 
     def __str__(self):
-        return str(self.idJogador) + ' ' + str(self.idPartida)
+        return str(self.idJogador) + ' - ' + str(self.placarPais1) + ' ' + str(self.placarPais2)  + ' - ' + str(self.idPartida) 
+
+class Login(models.Model):
+    login = models.CharField(max_length=50)
+    data = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.login + ' ' + self.data
 
 # Create your models here.
 
